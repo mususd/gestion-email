@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="srvEmpresa">
+      <implementation-class>wsServicios.srvEmpresa</implementation-class>
+    </service>
+    <service name="srvTipoBandeja">
+      <implementation-class>wsServicios.srvTipoBandeja</implementation-class>
+    </service>
+    <service name="srvEstadoEmail">
+      <implementation-class>wsServicios.srvEstadoEmail</implementation-class>
+    </service>
+    <service name="srvUsuario">
+      <implementation-class>wsServicios.srvUsuario</implementation-class>
+    </service>
+    <service name="srvRecuperarContrasena">
+      <implementation-class>wsServicios.srvRecuperarContrasena</implementation-class>
+    </service>
+    <service name="srvBandeja">
+      <implementation-class>wsServicios.srvBandeja</implementation-class>
+    </service>
+    <service name="srvHistorialIngresos">
+      <implementation-class>wsServicios.srvHistorialIngresos</implementation-class>
+    </service>
+    <service name="srvDestinatarioEmail">
+      <implementation-class>wsServicios.srvDestinatarioEmail</implementation-class>
+    </service>
+  </services>
+  <clients/>
+</jax-ws>

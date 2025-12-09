@@ -1,0 +1,198 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.mycompany</groupId>
+    <artifactId>appGestionEmail</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <name>appGestionEmail</name>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+    </properties>
+
+    <dependencies>
+        <!-- API Jakarta EE (Payara provee la implementación en runtime) -->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>8.0.0</version>
+        </dependency>
+
+        <!-- Metro JAX-WS runtime compatible con JDK 11 -->
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>rt</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.13.3</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Compilador -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+
+            <!-- Generar clientes JAX-WS desde múltiples WSDL -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <!-- srvUsuario -->
+                    <execution>
+                        <id>srvUsuario-client</id>
+                        <phase>generate-sources</phase>
+                        <goals><goal>wsimport</goal></goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>http://localhost:50413/wsGestionEmail/srvUsuario?wsdl</wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>Modelo.usuario</packageName>
+                            <sourceDestDir>${project.build.directory}/generated-sources/jaxws</sourceDestDir>
+                            <xnocompile>true</xnocompile>
+                            <vmArgs>
+                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                            </vmArgs>
+                        </configuration>
+                    </execution>
+
+                    <!-- srvEmpresa -->
+                    <execution>
+                        <id>srvEmpresa-client</id>
+                        <phase>generate-sources</phase>
+                        <goals><goal>wsimport</goal></goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>http://localhost:50413/wsGestionEmail/srvEmpresa?wsdl</wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>Modelo.empresa</packageName>
+                            <sourceDestDir>${project.build.directory}/generated-sources/jaxws</sourceDestDir>
+                            <xnocompile>true</xnocompile>
+                        </configuration>
+                    </execution>
+
+                    <!-- srvTipoBandeja -->
+                    <execution>
+                        <id>srvTipoBandeja-client</id>
+                        <phase>generate-sources</phase>
+                        <goals><goal>wsimport</goal></goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>http://localhost:50413/wsGestionEmail/srvTipoBandeja?wsdl</wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>Modelo.tipobandeja</packageName>
+                            <sourceDestDir>${project.build.directory}/generated-sources/jaxws</sourceDestDir>
+                            <xnocompile>true</xnocompile>
+                        </configuration>
+                    </execution>
+
+                    <!-- srvEstadoEmail -->
+                    <execution>
+                        <id>srvEstadoEmail-client</id>
+                        <phase>generate-sources</phase>
+                        <goals><goal>wsimport</goal></goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>http://localhost:50413/wsGestionEmail/srvEstadoEmail?wsdl</wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>Modelo.estadoemail</packageName>
+                            <sourceDestDir>${project.build.directory}/generated-sources/jaxws</sourceDestDir>
+                            <xnocompile>true</xnocompile>
+                        </configuration>
+                    </execution>
+
+                    <!-- srvRecuperarContrasena -->
+                    <execution>
+                        <id>srvRecuperarContrasena-client</id>
+                        <phase>generate-sources</phase>
+                        <goals><goal>wsimport</goal></goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>http://localhost:50413/wsGestionEmail/srvRecuperarContrasena?wsdl</wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>Modelo.recuperarcontrasena</packageName>
+                            <sourceDestDir>${project.build.directory}/generated-sources/jaxws</sourceDestDir>
+                            <xnocompile>true</xnocompile>
+                        </configuration>
+                    </execution>
+
+                    <!-- srvBandeja -->
+                    <execution>
+                        <id>srvBandeja-client</id>
+                        <phase>generate-sources</phase>
+                        <goals><goal>wsimport</goal></goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>http://localhost:50413/wsGestionEmail/srvBandeja?wsdl</wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>Modelo.bandeja</packageName>
+                            <sourceDestDir>${project.build.directory}/generated-sources/jaxws</sourceDestDir>
+                            <xnocompile>true</xnocompile>
+                        </configuration>
+                    </execution>
+
+                    <!-- srvHistorialIngresos -->
+                    <execution>
+                        <id>srvHistorialIngresos-client</id>
+                        <phase>generate-sources</phase>
+                        <goals><goal>wsimport</goal></goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>http://localhost:50413/wsGestionEmail/srvHistorialIngresos?wsdl</wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>Modelo.historialingresos</packageName>
+                            <sourceDestDir>${project.build.directory}/generated-sources/jaxws</sourceDestDir>
+                            <xnocompile>true</xnocompile>
+                        </configuration>
+                    </execution>
+
+                    <!-- srvDestinatarioEmail -->
+                    <execution>
+                        <id>srvDestinatarioEmail-client</id>
+                        <phase>generate-sources</phase>
+                        <goals><goal>wsimport</goal></goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>http://localhost:50413/wsGestionEmail/srvDestinatarioEmail?wsdl</wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>Modelo.destinatarioemail</packageName>
+                            <sourceDestDir>${project.build.directory}/generated-sources/jaxws</sourceDestDir>
+                            <xnocompile>true</xnocompile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- WAR plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

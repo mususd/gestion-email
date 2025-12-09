@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.4.3.payara-p6 (FISH-5811-df8dba8; 2021-12-02T15:42:59+0000) JAXWS-RI/2.3.2.payara-p4 JAXWS-API/2.3.2 JAXB-RI/2.3.2 JAXB-API/2.3.2 git-revision#unknown. --><xs:schema xmlns:tns="http://wsServicios/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://wsServicios/">
+
+<xs:element name="actualizacion" type="tns:actualizacion"/>
+
+<xs:element name="actualizacionResponse" type="tns:actualizacionResponse"/>
+
+<xs:element name="autenticar" type="tns:autenticar"/>
+
+<xs:element name="autenticarResponse" type="tns:autenticarResponse"/>
+
+<xs:element name="eliminar" type="tns:eliminar"/>
+
+<xs:element name="eliminarResponse" type="tns:eliminarResponse"/>
+
+<xs:element name="insertar" type="tns:insertar"/>
+
+<xs:element name="insertarResponse" type="tns:insertarResponse"/>
+
+<xs:element name="listar" type="tns:listar"/>
+
+<xs:element name="listarPorID" type="tns:listarPorID"/>
+
+<xs:element name="listarPorIDResponse" type="tns:listarPorIDResponse"/>
+
+<xs:element name="listarResponse" type="tns:listarResponse"/>
+
+<xs:complexType name="actualizacion">
+<xs:sequence>
+<xs:element name="idEmpresa" type="xs:int"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="apellido" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="contrasena" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaRegistro" type="xs:string" minOccurs="0"/>
+<xs:element name="estado" type="xs:string" minOccurs="0"/>
+<xs:element name="usuario" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="actualizacionResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertar">
+<xs:sequence>
+<xs:element name="usuario" type="xs:string" minOccurs="0"/>
+<xs:element name="idEmpresa" type="xs:int"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="apellido" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="contrasena" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaRegistro" type="xs:string" minOccurs="0"/>
+<xs:element name="estado" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminar">
+<xs:sequence>
+<xs:element name="usuario" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarPorID">
+<xs:sequence>
+<xs:element name="usuario" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarPorIDResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:usuario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="usuario">
+<xs:sequence>
+<xs:element name="apellido" type="xs:string" minOccurs="0"/>
+<xs:element name="contrasena" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="estado" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaRegistro" type="xs:string" minOccurs="0"/>
+<xs:element name="idEmpresa" type="xs:int"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="usuario" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listar">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listarResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:usuario" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="autenticar">
+<xs:sequence>
+<xs:element name="usuario" type="xs:string" minOccurs="0"/>
+<xs:element name="contrasena" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="autenticarResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:usuario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
